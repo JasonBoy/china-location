@@ -4,8 +4,8 @@
   "description": "China's administrative districts information, 中国行政区划信息",
   "main": "index.js",
   "scripts": {
-    "build": "node lib/reformat.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "node test/index.test.js",
+    "test": "node test/index.test.js"
   },
   "repository": {
     "type": "git",
