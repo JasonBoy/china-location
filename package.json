@@ -2,9 +2,13 @@
   "name": "china-location",
   "version": "0.0.1",
   "description": "Chinese Administrative Division information, 中国行政区划信息",
-  "main": "index.js",
+  "main": "dist/china-location.js",
+  "main:next": "index.js",
   "scripts": {
-    "build": "node build/index.js",
+    "reformat": "node build/index.js",
+    "build:dev": "NODE_ENV=development webpack --progress",
+    "build:prod": "NODE_ENV=production webpack --progress",
+    "build": "npm run build:dev && npm run build:prod",
     "test": "_mocha -- test/**/*.test.js"
   },
   "repository": {
@@ -29,6 +33,11 @@
   "homepage": "https://github.com/JasonBoy/data_location#readme",
   "devDependencies": {
     "chai": "^3.5.0",
-    "mocha": "^3.3.0"
+    "mocha": "^3.3.0",
+    "babel-cli": "^6.24.1",
+    "babel-core": "^6.24.1",
+    "babel-loader": "^7.0.0",
+    "babel-preset-es2015": "^6.24.1",
+    "webpack": "^2.5.1"
   }
 }
