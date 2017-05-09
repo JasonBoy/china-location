@@ -1,25 +1,42 @@
-# 中国行政区划信息
+# china-location
+NPM module for [中国行政区划信息](https://github.com/mumuy/data_location#中国行政区划信息)  
+NPM module to simplify the use of chinese administrative division data.
 
-数据演示(DEMO)地址：http://jquerywidget.com/jquery-citys/
+## Usage
 
-### 版权
-数据库由 [passer-by.com](http://passer-by.com/) 整理,获取最新最全的数据还请关注此项目。
+`npm install china-location --save` or
+`yarn add china-location`
 
-### 数据说明
-- 省、市、区数据来自于民政局、国务院公告为主，确保及时更新和权威；
-- 街道(镇、乡)数据由于各地各级之前公函较多，难免有所冲突，无法保证有效性，仅确保为近年来基本准确；
-- 数据是以行政区为单位的行政区划数据。行政管理区与行政区存在重合，不予收录;
- 
- (行政管理区通常包含:***经济特区/经济开发区/高新区/新区/工业区；亦有部分行政管理区升为行政区，需加以区分)
+```javascript
+const list = require('china-location/dist/location.json');
+const ChinaLocation = require('china-location');
+const location = new ChinaLocation(list);
 
-### 关于行政区划代码
-使用《中华人民共和国行政区划代码》国家标准(GB/T2260).
-这部分可分为三个层次,从左到右的含义分别是：
-- 第一、二位表示省(自治区、直辖市、特别行政区)
-- 第三、四位表示市(地区、自治州、盟及国家直辖市所属市辖区和县的汇总码)
-- 第五、六位表示县(市辖区、县级市、旗).
+//get default location
+//{
+//  province: {code: '110000', name: '北京市'},
+//  city: {code: '110000', name: '北京市'},
+//  district: {code: '110101', name: '东城区'}
+//}
+const defaultLocation = location.getCurrentAddress();
 
-港澳台地区编码并非标准编码，而是整理和参考标准编码规则自定义的，方便用户统一使用。
+//change location
+const newProvince = '320000';
+const newCity = '320500';
+const newDistrict = '320509';
+//use select html tag to change different part
+location.changeProvince(newProvince);
+location.changeCity(newCity);
+location.changeDistrict(newDistrict);
+//{
+//  province: {code: '320000', name: '江苏省'},
+//  city: {code: '320500', name: '苏州市'},
+//  district: {code: '320509', name: '吴江区'}
+//}
+const newLocation = location.getCurrentAddress();
 
-### 反馈
-如果有哪些地方数据错误或者更新不及时，还请告知(在"Issues"中留言)，以便尽快更新～
+```
+
+## LICENSE
+
+MIT

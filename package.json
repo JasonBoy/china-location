@@ -1,7 +1,7 @@
 {
   "name": "china-location",
   "version": "0.0.1",
-  "description": "China's administrative districts information, 中国行政区划信息",
+  "description": "Chinese Administrative Division information, 中国行政区划信息",
   "main": "index.js",
   "scripts": {
     "build": "node build/index.js",
@@ -19,7 +19,7 @@
     "city",
     "district",
     "data_location",
-    "china administrative division"
+    "chinese administrative division"
   ],
   "author": "Jason Jiang <jasonlikenfs@gmail.com>",
   "license": "MIT",

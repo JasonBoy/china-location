@@ -1,7 +1,7 @@
 const should = require('chai').should();
 
 const list = require('../dist/location.json');
-const ChinaLocation = require('../index').ChinaLocation;
+const ChinaLocation = require('../index');
 
 describe('ChinaLocation', function () {
   it('should get default location', function () {
