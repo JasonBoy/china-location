@@ -4,7 +4,7 @@
   "description": "China's administrative districts information, 中国行政区划信息",
   "main": "index.js",
   "scripts": {
-    "build": "node test/index.test.js",
+    "build": "node build/index.js",
     "test": "_mocha -- test/**/*.test.js"
   },
   "repository": {

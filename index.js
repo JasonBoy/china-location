@@ -1,8 +1,6 @@
 'use strict';
 
-const reformat = require('./lib/reformat');
-
 module.exports = {
-  reformatLocation: reformat,
+  // reformatLocation: require('./lib/reformat'),
   ChinaLocation: require('./lib/ChinaLocation'),
 };
