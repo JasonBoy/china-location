@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "build": "node test/index.test.js",
-    "test": "_mocha -- -R spec test/**/*"
+    "test": "_mocha -- test/**/*.test.js"
   },
   "repository": {
     "type": "git",
@@ -25,5 +25,9 @@
   "bugs": {
     "url": "https://github.com/JasonBoy/data_location/issues"
   },
-  "homepage": "https://github.com/JasonBoy/data_location#readme"
+  "homepage": "https://github.com/JasonBoy/data_location#readme",
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "mocha": "^3.3.0"
+  }
 }

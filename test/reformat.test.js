@@ -1,3 +1,3 @@
 const dataLocation = require('../index');
 
-dataLocation.reformatLocation();
+// dataLocation.reformatLocation();
