@@ -1,9 +1,10 @@
 {
   "name": "china-location",
   "version": "0.0.1",
-  "description": "China's administrative division information, 中国行政区划信息",
+  "description": "China's administrative districts information, 中国行政区划信息",
   "main": "index.js",
   "scripts": {
+    "build": "node lib/reformat.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
