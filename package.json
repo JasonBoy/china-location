@@ -1,0 +1,28 @@
+{
+  "name": "china-location",
+  "version": "0.0.1",
+  "description": "China's administrative division information, 中国行政区划信息",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JasonBoy/data_location.git"
+  },
+  "keywords": [
+    "china",
+    "location",
+    "province",
+    "city",
+    "district",
+    "data_location",
+    "administrative districts"
+  ],
+  "author": "Jason Jiang <jasonlikenfs@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/JasonBoy/data_location/issues"
+  },
+  "homepage": "https://github.com/JasonBoy/data_location#readme"
+}
