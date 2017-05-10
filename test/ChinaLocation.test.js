@@ -12,14 +12,24 @@ describe('ChinaLocation', function () {
     defaultLocation.district.code.should.be.equal('110101');
   });
 
+  const newProvince = '320000';
+  const newCity = '320500';
+  const newDistrict = '320509';
+
   it('should change location', function () {
     const location = new ChinaLocation(list);
-    const newProvince = '320000';
-    const newCity = '320500';
-    const newDistrict = '320509';
     location.changeProvince(newProvince);
     location.changeCity(newCity);
     location.changeDistrict(newDistrict);
+    const newLocation = location.getCurrentAddress();
+    newLocation.province.name.should.be.equal('江苏省');
+    newLocation.city.name.should.be.equal('苏州市');
+    newLocation.district.name.should.be.equal('吴江区');
+  });
+
+  it('should change location at one time', function () {
+    const location = new ChinaLocation(list);
+    location.changeLocation(newProvince, newCity, newDistrict);
     const newLocation = location.getCurrentAddress();
     newLocation.province.name.should.be.equal('江苏省');
     newLocation.city.name.should.be.equal('苏州市');

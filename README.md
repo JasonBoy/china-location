@@ -28,6 +28,8 @@ const newDistrict = '320509';
 location.changeProvince(newProvince);
 location.changeCity(newCity);
 location.changeDistrict(newDistrict);
+//or you can change location at one time
+location.changeLocation(newProvince, newCity, newDistrict);
 //{
 //  province: {code: '320000', name: '江苏省'},
 //  city: {code: '320500', name: '苏州市'},
