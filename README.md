@@ -3,7 +3,7 @@
 [![Building Status](https://travis-ci.org/JasonBoy/data_location.svg?branch=master)](https://travis-ci.org/JasonBoy/data_location)
 
 NPM module for [中国行政区划信息](https://github.com/mumuy/data_location#中国行政区划信息)  
-NPM module to simplify the use of chinese administrative division data.
+Simplify the use of chinese administrative division data.
 
 ## Usage
 
