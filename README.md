@@ -5,6 +5,8 @@
 NPM module for [中国行政区划信息](https://github.com/mumuy/data_location#中国行政区划信息)  
 Simplify the use of chinese administrative division data.
 
+[An React Component](https://github.com/JasonBoy/react-china-location) For this
+
 ## Usage
 
 `npm install china-location --save` or
