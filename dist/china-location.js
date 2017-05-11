@@ -181,24 +181,39 @@ var ChinaLocation = function () {
       return districts[code];
     }
   }, {
+    key: 'changeLocation',
+    value: function changeLocation(provinceCode, cityCode, districtCode) {
+      this.changeProvince.apply(this, arguments);
+    }
+  }, {
     key: 'changeProvince',
-    value: function changeProvince(provinceCode) {
+    value: function changeProvince(provinceCode, cityCode, districtCode) {
       var currentProvince = { code: provinceCode };
       var cities = this.getCities(currentProvince);
-      var defaultCity = cities[0];
+      var city = cities[0];
+      if (cityCode) {
+        var i = 0;
+        for (; i < cities.length; i++) {
+          var tempCity = cities[i];
+          if (tempCity.code == cityCode) {
+            city = tempCity;
+            break;
+          }
+        }
+      }
       // const districts = this.getDistricts(defaultCity, pObject);
 
       this.currentCities = cities;
       this.activeProvince = provinceCode;
 
-      this.changeCity(defaultCity.code);
+      this.changeCity(city.code, districtCode);
       // this.currentDistricts = districts;
       // this.activeCity = defaultCity.code;
       // this.activeDistrict = districts[0].code;
     }
   }, {
     key: 'changeCity',
-    value: function changeCity(cityCode) {
+    value: function changeCity(cityCode, districtCode) {
       var districts = this.getDistricts({
         code: cityCode
       }, {
@@ -208,7 +223,19 @@ var ChinaLocation = function () {
       this.currentDistricts = districts;
       this.activeCity = cityCode;
 
-      this.changeDistrict(districts[0].code);
+      var district = districts[0];
+      if (districtCode) {
+        var i = 0;
+        for (; i < districts.length; i++) {
+          var tempDistrict = districts[i];
+          if (tempDistrict.code == districtCode) {
+            district = tempDistrict;
+            break;
+          }
+        }
+      }
+
+      this.changeDistrict(district.code);
       // this.activeDistrict = districts[0].code;
     }
   }, {
@@ -237,6 +264,21 @@ var ChinaLocation = function () {
           name: originalDistrict
         }
       };
+    }
+  }, {
+    key: 'getCurrentProvinces',
+    value: function getCurrentProvinces() {
+      return this.currentProvinces;
+    }
+  }, {
+    key: 'getCurrentCities',
+    value: function getCurrentCities() {
+      return this.currentCities;
+    }
+  }, {
+    key: 'getCurrentDistricts',
+    value: function getCurrentDistricts() {
+      return this.currentDistricts;
     }
   }]);
 
