@@ -1,6 +1,6 @@
 {
   "name": "china-location",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "description": "Chinese Administrative Division information, 中国行政区划信息",
   "main": "dist/china-location.js",
   "main:next": "index.js",
