@@ -36,4 +36,14 @@ describe('ChinaLocation', function () {
     newLocation.district.name.should.be.equal('吴江区');
   });
 
+  it('should have no district', function () {
+    const location = new ChinaLocation(list);
+    location.changeLocation('440000', '441900');
+    const newLocation = location.getCurrentAddress();
+    console.log(newLocation);
+    newLocation.province.name.should.be.equal('广东省');
+    newLocation.city.name.should.be.equal('东莞市');
+    newLocation.district.name.should.be.equal('');
+  });
+
 });
