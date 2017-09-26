@@ -13,7 +13,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/JasonBoy/data_location.git"
+    "url": "git+https://github.com/JasonBoy/china-location.git"
   },
   "keywords": [
     "china",
@@ -28,9 +28,9 @@
   "author": "Jason Jiang <jasonlikenfs@gmail.com>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/JasonBoy/data_location/issues"
+    "url": "https://github.com/JasonBoy/china-location/issues"
   },
-  "homepage": "https://github.com/JasonBoy/data_location#readme",
+  "homepage": "https://github.com/JasonBoy/china-location#readme",
   "devDependencies": {
     "chai": "^3.5.0",
     "mocha": "^3.3.0",
