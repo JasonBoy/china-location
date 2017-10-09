@@ -1,6 +1,6 @@
 # china-location
 [![npm](https://img.shields.io/npm/v/china-location.svg)](https://www.npmjs.com/package/china-location)
-[![Building Status](https://travis-ci.org/JasonBoy/data_location.svg?branch=master)](https://travis-ci.org/JasonBoy/data_location)
+[![Building Status](https://travis-ci.org/JasonBoy/china-location.svg?branch=master)](https://travis-ci.org/JasonBoy/china-location)
 
 NPM module for [中国行政区划信息](https://github.com/mumuy/data_location#中国行政区划信息)  
 Simplify the use of chinese administrative division data.
