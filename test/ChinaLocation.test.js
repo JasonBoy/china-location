@@ -45,4 +45,10 @@ describe('ChinaLocation', function () {
     newLocation.district.name.should.be.equal('');
   });
 
+  it('should get new added location', function () {
+    const location = new ChinaLocation(list);
+    const district = location.getDistrictByCode('370614', '370600', '370000');
+    district.should.be.equal('蓬莱区');
+  });
+
 });
