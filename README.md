@@ -44,6 +44,26 @@ const newLocation = location.getCurrentAddress();
 
 ```
 
+## Build your own location.json
+
+In case the package is not packed with the latest location data, get/clone the data from [mumuy/data_location(list.json)](https://github.com/mumuy/data_location),
+and clone this repo and:
+
+```bash
+git clone git@github.com:JasonBoy/china-location.git
+cd china-location
+npm run reformat -- /path/to/data_location/list.json
+# and the location(.min).json will be output to ./dist dir
+```
+And in your project, you can:
+
+```javascript
+const yourNewLocation = require('path/to/location.json');
+const ChinaLocation = require('china-location');
+const location = new ChinaLocation(yourNewLocation);
+//...
+```
+
 ## LICENSE
 
 MIT
