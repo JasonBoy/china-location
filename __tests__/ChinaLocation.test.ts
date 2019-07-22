@@ -1,5 +1,5 @@
-const list = require("../dist/location.json");
-const ChinaLocation = require("../dist/ChinaLocation.umd.js");
+import list from "../dist/location.json";
+import ChinaLocation from "../lib/ChinaLocation";
 
 describe("ChinaLocation", function() {
   let newProvince;

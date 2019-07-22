@@ -114,8 +114,8 @@ class ChinaLocation {
 
   changeLocation(
     provinceCode: string,
-    cityCode: string,
-    districtCode: string
+    cityCode?: string,
+    districtCode?: string
   ): this {
     this.changeProvince(provinceCode, cityCode, districtCode);
     return this;
@@ -123,8 +123,8 @@ class ChinaLocation {
 
   changeProvince(
     provinceCode: string,
-    cityCode: string,
-    districtCode: string
+    cityCode?: string,
+    districtCode?: string
   ): void {
     const cities = this.getCities({ code: provinceCode } as LocationItem);
     let city = cities[0];
@@ -144,7 +144,7 @@ class ChinaLocation {
     this.changeCity(city ? city.code : "", districtCode);
   }
 
-  changeCity(cityCode: string, districtCode: string): void {
+  changeCity(cityCode: string, districtCode?: string): void {
     const districts = this.getDistricts(
       {
         code: cityCode
