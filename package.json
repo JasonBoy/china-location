@@ -1,15 +1,14 @@
 {
   "name": "china-location",
-  "version": "1.0.4",
+  "version": "2.0.0",
   "description": "Chinese Administrative Division information, 中国行政区划信息",
-  "main": "dist/china-location.js",
-  "main:next": "index.js",
+  "main": "dist/ChinaLocation.umd.js",
+  "module": "dist/ChinaLocation.modern.mjs",
+  "types": "dist/ChinaLocation.d.ts",
   "scripts": {
-    "reformat": "node build/index.js",
-    "build:dev": "NODE_ENV=development webpack --progress",
-    "build:prod": "NODE_ENV=production webpack --progress",
-    "build": "npm run build:dev && npm run build:prod",
-    "test": "_mocha -- test/**/*.test.js"
+    "reformat": "node scripts/index.js",
+    "build": "microbundle -i lib/ChinaLocation.ts -f modern,umd",
+    "test": "jest"
   },
   "repository": {
     "type": "git",
@@ -23,7 +22,8 @@
     "city",
     "district",
     "data_location",
-    "chinese administrative division"
+    "chinese administrative division",
+    "中国行政区划信息"
   ],
   "author": "Jason Jiang <jasonlikenfs@gmail.com>",
   "license": "MIT",
@@ -32,12 +32,16 @@
   },
   "homepage": "https://github.com/JasonBoy/china-location#readme",
   "devDependencies": {
-    "chai": "^3.5.0",
-    "mocha": "^3.3.0",
-    "babel-cli": "^6.24.1",
-    "babel-core": "^6.24.1",
-    "babel-loader": "^7.0.0",
-    "babel-preset-es2015": "^6.24.1",
-    "webpack": "^2.5.1"
-  }
+    "jest": "^24.8.0",
+    "microbundle": "^0.12.0-next.3"
+  },
+  "files": [
+    "dist",
+    "lib",
+    "scripts",
+    "__tests__",
+    "LICENSE",
+    "README.md",
+    "package.json"
+  ]
 }

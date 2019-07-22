@@ -13,8 +13,9 @@ Simplify the use of chinese administrative division data.
 `yarn add china-location`
 
 ```javascript
-const list = require('china-location/dist/location.json');
-const ChinaLocation = require('china-location');
+import list from 'china-location/dist/location.json';
+import ChinaLocation from 'china-location';
+//const ChinaLocation = require('china-location');
 const location = new ChinaLocation(list);
 
 //get default location
