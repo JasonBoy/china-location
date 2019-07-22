@@ -8,7 +8,8 @@
   "scripts": {
     "reformat": "node scripts/index.js",
     "build": "microbundle -i lib/ChinaLocation.ts -f modern,umd",
-    "test": "jest"
+    "test": "npm run build && jest",
+    "prepublishOnly": "npm run build"
   },
   "repository": {
     "type": "git",

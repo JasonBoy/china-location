@@ -41,3 +41,4 @@ jspm_packages
 config.json
 .Ds_Store
 dist
+!dist/location*.json
