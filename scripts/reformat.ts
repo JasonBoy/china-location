@@ -122,4 +122,4 @@ function getDistricts(cityCode) {
   return result;
 }
 
-module.exports = processLocation;
+processLocation().then(() => console.log('Reformat list finished!'));

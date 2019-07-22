@@ -3,8 +3,6 @@
     "target": "es2015"
   },
   "include": [
-    "lib/*.ts",
-    "__tests__/*.ts",
-    "scripts/*.ts"
+    "lib/*.ts"
   ]
 }

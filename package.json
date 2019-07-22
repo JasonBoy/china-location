@@ -6,7 +6,7 @@
   "module": "dist/ChinaLocation.modern.mjs",
   "types": "dist/ChinaLocation.d.ts",
   "scripts": {
-    "reformat": "node scripts/index.js",
+    "reformat": "tsc scripts/reformat.ts --outFile dist/reformat.js && node dist/reformat.js",
     "build": "microbundle -i lib/ChinaLocation.ts -f modern,umd",
     "test": "npm run build && jest",
     "prepublishOnly": "npm run build"
@@ -34,7 +34,8 @@
   "homepage": "https://github.com/JasonBoy/china-location#readme",
   "devDependencies": {
     "jest": "^24.8.0",
-    "microbundle": "^0.12.0-next.3"
+    "microbundle": "^0.12.0-next.3",
+    "typescript": "^3.5.3"
   },
   "files": [
     "dist",
