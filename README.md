@@ -2,8 +2,8 @@
 [![npm](https://img.shields.io/npm/v/china-location.svg)](https://www.npmjs.com/package/china-location)
 [![Building Status](https://travis-ci.org/JasonBoy/china-location.svg?branch=master)](https://travis-ci.org/JasonBoy/china-location)
 
-NPM module for [中国行政区划信息](https://github.com/mumuy/data_location#中国行政区划信息)  
-Simplify the use of chinese administrative division data.
+JS Library for [中国行政区划信息](https://github.com/mumuy/data_location#中国行政区划信息)  
+Simplify the usage of chinese administrative division data.
 
 [An React Component](https://github.com/JasonBoy/react-china-location) For this
 
@@ -59,8 +59,8 @@ npm run reformat -- /path/to/data_location/list.json
 And in your project, you can:
 
 ```javascript
-const yourNewLocation = require('path/to/location.json');
-const ChinaLocation = require('china-location');
+import yourNewLocation from 'path/to/location.json';
+import ChinaLocation from 'china-location';
 const location = new ChinaLocation(yourNewLocation);
 //...
 ```
