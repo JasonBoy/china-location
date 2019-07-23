@@ -100,7 +100,7 @@ class ChinaLocation {
     districtCode: string,
     cityCode: string,
     provinceCode: string
-  ) {
+  ): string {
     return this.getCityByCode(cityCode, provinceCode).districts[districtCode];
   }
 

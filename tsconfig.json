@@ -4,7 +4,5 @@
     "esModuleInterop": true,
     "target": "es2015"
   },
-  "include": [
-    "lib/*.ts"
-  ]
+  "include": ["lib/*.ts"]
 }

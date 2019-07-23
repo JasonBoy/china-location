@@ -2,9 +2,9 @@ import list from "../dist/location.json";
 import ChinaLocation from "../lib/ChinaLocation";
 
 describe("ChinaLocation", function() {
-  let newProvince;
-  let newCity;
-  let newDistrict;
+  let newProvince: string;
+  let newCity: string;
+  let newDistrict: string;
 
   beforeAll(() => {
     newProvince = "320000";
