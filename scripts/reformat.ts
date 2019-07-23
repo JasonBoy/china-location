@@ -1,13 +1,13 @@
-'use strict';
+"use strict";
 
-const path = require('path');
-const fs = require('fs');
+const path = require("path");
+const fs = require("fs");
 
 let listPath = process.argv[2];
-if(!listPath) {
-  console.error(new Error('No data list json file provided!'));
-  process.exit(1);
-  return;
+if (!listPath) {
+  throw new Error(
+    "No data list json file provided!use [npm run reformat -- /path/to/location.json] to specify original location data"
+  );
 }
 
 listPath = path.resolve(listPath);
@@ -16,33 +16,32 @@ const list = JSON.parse(fs.readFileSync(listPath));
 
 const allKeys = Object.keys(list);
 
-const buildName = path.join(__dirname, '../dist/location.json');
-const buildMinName = path.join(__dirname, '../dist/location.min.json');
+const buildName = path.join(__dirname, "../dist/location.json");
+const buildMinName = path.join(__dirname, "../dist/location.min.json");
 
-function processLocation () {
-  return new Promise((resolve) => {
+function processLocation() {
+  return new Promise(resolve => {
     getProvince();
-    console.log('Location processed!');
+    console.log("Location processed!");
     //resolve with the built file name
     resolve(buildName);
   });
 }
 
-function getProvince () {
+function getProvince() {
   const result = {};
-  const provinceKeys = allKeys.filter((key) => {
-    return key.endsWith('0000');
+  const provinceKeys = allKeys.filter(key => {
+    return key.endsWith("0000");
   });
   // console.log('=======Province=======');
-  provinceKeys.forEach((pk) => {
+  provinceKeys.forEach(pk => {
     // console.log(`${pk}:${list[pk]}`);
     result[pk] = {
       code: pk,
       name: list[pk],
-      cities: getCities(pk),
+      cities: getCities(pk)
     };
     // const tempCities = getCities(pk);
-
   });
   // console.log(result);
   // console.log(`=======Province END, total: ${provinceKeys.length}=======`);
@@ -58,18 +57,21 @@ function getProvince () {
   return result;
 }
 
-function getCities (provinceCode) {
+function getCities(provinceCode) {
   const result = {};
   const justProvince = provinceCode.substring(0, 2);
   const cities = allKeys.filter((pk, index) => {
-    if(pk.startsWith(justProvince)) {
-      if(pk.endsWith('00')) {
+    if (pk.startsWith(justProvince)) {
+      if (pk.endsWith("00")) {
         const next = index + 1;
         const nextKey = allKeys[next];
-        if(!nextKey.endsWith('00')) {
+        if (!nextKey.endsWith("00")) {
           return true;
         }
-        if ((pk.substring(2,4) != nextKey.substring(2,4)) && pk.substring(2, 4) != '00') {
+        if (
+          pk.substring(2, 4) != nextKey.substring(2, 4) &&
+          pk.substring(2, 4) != "00"
+        ) {
           return true;
         }
       }
@@ -77,12 +79,12 @@ function getCities (provinceCode) {
     return false;
   });
   // console.log(`=======Cities for: ${provinceCode}=======`);
-  cities.forEach((ck) => {
+  cities.forEach(ck => {
     // console.log(`${ck}:${list[ck]}`);
     result[ck] = {
       code: ck,
       name: list[ck],
-      districts: getDistricts(ck),
+      districts: getDistricts(ck)
     };
   });
   // console.log(result);
@@ -97,21 +99,21 @@ function getDistricts(cityCode) {
   const justProvince = cityCode.substring(0, 2);
   const justCity = cityCode.substring(0, 4);
   const districts = allKeys.filter((pk, index) => {
-    if(pk.startsWith(justCity)) {
-      if(!pk.endsWith('00')) {
+    if (pk.startsWith(justCity)) {
+      if (!pk.endsWith("00")) {
         return true;
       }
     }
     //特别行政区, 直辖市
-    if(justCity.endsWith('00')) {
-      if(pk.startsWith(justProvince) && !pk.endsWith('0000')) {
+    if (justCity.endsWith("00")) {
+      if (pk.startsWith(justProvince) && !pk.endsWith("0000")) {
         return true;
       }
     }
     return false;
   });
   // console.log(`=======Districts for: ${cityCode}=======`);
-  districts.forEach((ck) => {
+  districts.forEach(ck => {
     // console.log(`${ck}:${list[ck]}`);
     result[ck] = list[ck];
   });
@@ -120,4 +122,4 @@ function getDistricts(cityCode) {
   return result;
 }
 
-module.exports = processLocation;
+processLocation().then(() => console.log("Reformat list finished!"));
