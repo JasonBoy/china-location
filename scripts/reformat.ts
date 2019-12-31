@@ -1,12 +1,12 @@
-"use strict";
+'use strict';
 
-const path = require("path");
-const fs = require("fs");
+const path = require('path');
+const fs = require('fs');
 
 let listPath = process.argv[2];
 if (!listPath) {
   throw new Error(
-    "No data list json file provided!use [npm run reformat -- /path/to/location.json] to specify original location data"
+    'No data list json file provided!use [npm run reformat -- /path/to/location.json] to specify original location data'
   );
 }
 
@@ -16,13 +16,13 @@ const list = JSON.parse(fs.readFileSync(listPath));
 
 const allKeys = Object.keys(list);
 
-const buildName = path.join(__dirname, "../dist/location.json");
-const buildMinName = path.join(__dirname, "../dist/location.min.json");
+const buildName = path.join(__dirname, '../dist/location.json');
+const buildMinName = path.join(__dirname, '../dist/location.min.json');
 
 function processLocation() {
   return new Promise(resolve => {
     getProvince();
-    console.log("Location processed!");
+    console.log('Location processed!');
     //resolve with the built file name
     resolve(buildName);
   });
@@ -31,7 +31,7 @@ function processLocation() {
 function getProvince() {
   const result = {};
   const provinceKeys = allKeys.filter(key => {
-    return key.endsWith("0000");
+    return key.endsWith('0000');
   });
   // console.log('=======Province=======');
   provinceKeys.forEach(pk => {
@@ -39,7 +39,7 @@ function getProvince() {
     result[pk] = {
       code: pk,
       name: list[pk],
-      cities: getCities(pk)
+      cities: getCities(pk),
     };
     // const tempCities = getCities(pk);
   });
@@ -62,15 +62,15 @@ function getCities(provinceCode) {
   const justProvince = provinceCode.substring(0, 2);
   const cities = allKeys.filter((pk, index) => {
     if (pk.startsWith(justProvince)) {
-      if (pk.endsWith("00")) {
+      if (pk.endsWith('00')) {
         const next = index + 1;
         const nextKey = allKeys[next];
-        if (!nextKey.endsWith("00")) {
+        if (!nextKey.endsWith('00')) {
           return true;
         }
         if (
           pk.substring(2, 4) != nextKey.substring(2, 4) &&
-          pk.substring(2, 4) != "00"
+          pk.substring(2, 4) != '00'
         ) {
           return true;
         }
@@ -84,7 +84,7 @@ function getCities(provinceCode) {
     result[ck] = {
       code: ck,
       name: list[ck],
-      districts: getDistricts(ck)
+      districts: getDistricts(ck),
     };
   });
   // console.log(result);
@@ -100,13 +100,13 @@ function getDistricts(cityCode) {
   const justCity = cityCode.substring(0, 4);
   const districts = allKeys.filter((pk, index) => {
     if (pk.startsWith(justCity)) {
-      if (!pk.endsWith("00")) {
+      if (!pk.endsWith('00')) {
         return true;
       }
     }
     //特别行政区, 直辖市
-    if (justCity.endsWith("00")) {
-      if (pk.startsWith(justProvince) && !pk.endsWith("0000")) {
+    if (justCity.endsWith('00')) {
+      if (pk.startsWith(justProvince) && !pk.endsWith('0000')) {
         return true;
       }
     }
@@ -122,4 +122,4 @@ function getDistricts(cityCode) {
   return result;
 }
 
-processLocation().then(() => console.log("Reformat list finished!"));
+processLocation().then(() => console.log('Reformat list finished!'));

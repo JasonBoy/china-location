@@ -1,57 +1,57 @@
-import list from "../dist/location.json";
-import ChinaLocation from "../lib/ChinaLocation";
+import list from '../dist/location.json';
+import ChinaLocation from '../lib/ChinaLocation';
 
-describe("ChinaLocation", function() {
+describe('ChinaLocation', function() {
   let newProvince: string;
   let newCity: string;
   let newDistrict: string;
 
   beforeAll(() => {
-    newProvince = "320000";
-    newCity = "320500";
-    newDistrict = "320509";
+    newProvince = '320000';
+    newCity = '320500';
+    newDistrict = '320509';
   });
 
-  it("should get default location", function() {
+  it('should get default location', function() {
     const location = new ChinaLocation(list);
     const defaultLocation = location.getCurrentAddress();
-    expect(defaultLocation.province.code).toEqual("110000");
-    expect(defaultLocation.city.code).toEqual("110000");
-    expect(defaultLocation.district.code).toEqual("110101");
+    expect(defaultLocation.province.code).toEqual('110000');
+    expect(defaultLocation.city.code).toEqual('110000');
+    expect(defaultLocation.district.code).toEqual('110101');
   });
 
-  it("should change location", function() {
+  it('should change location', function() {
     const location = new ChinaLocation(list);
     location.changeProvince(newProvince);
     location.changeCity(newCity);
     location.changeDistrict(newDistrict);
     const newLocation = location.getCurrentAddress();
-    expect(newLocation.province.name).toEqual("江苏省");
-    expect(newLocation.city.name).toEqual("苏州市");
-    expect(newLocation.district.name).toEqual("吴江区");
+    expect(newLocation.province.name).toEqual('江苏省');
+    expect(newLocation.city.name).toEqual('苏州市');
+    expect(newLocation.district.name).toEqual('吴江区');
   });
 
-  it("should change location at one time", function() {
+  it('should change location at one time', function() {
     const location = new ChinaLocation(list);
     location.changeLocation(newProvince, newCity, newDistrict);
     const newLocation = location.getCurrentAddress();
-    expect(newLocation.province.name).toEqual("江苏省");
-    expect(newLocation.city.name).toEqual("苏州市");
-    expect(newLocation.district.name).toEqual("吴江区");
+    expect(newLocation.province.name).toEqual('江苏省');
+    expect(newLocation.city.name).toEqual('苏州市');
+    expect(newLocation.district.name).toEqual('吴江区');
   });
 
-  it("should have no district", function() {
+  it('should have no district', function() {
     const location = new ChinaLocation(list);
-    location.changeLocation("440000", "441900");
+    location.changeLocation('440000', '441900');
     const newLocation = location.getCurrentAddress();
-    expect(newLocation.province.name).toEqual("广东省");
-    expect(newLocation.city.name).toEqual("东莞市");
-    expect(newLocation.district.name).toEqual("");
+    expect(newLocation.province.name).toEqual('广东省');
+    expect(newLocation.city.name).toEqual('东莞市');
+    expect(newLocation.district.name).toEqual('');
   });
 
-  it("should get new added location", function() {
+  it('should get new added location', function() {
     const location = new ChinaLocation(list);
-    const district = location.getDistrictByCode("370614", "370600", "370000");
-    expect(district).toEqual("蓬莱区");
+    const district = location.getDistrictByCode('370614', '370600', '370000');
+    expect(district).toEqual('蓬莱区');
   });
 });

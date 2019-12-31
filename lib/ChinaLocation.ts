@@ -1,4 +1,4 @@
-"use strict";
+'use strict';
 
 interface LocationItem {
   code: string;
@@ -50,7 +50,7 @@ class ChinaLocation {
       const provinceData = this.locationData[provinceKey];
       provinces.push({
         code: provinceData.code,
-        name: provinceData.name
+        name: provinceData.name,
       });
     });
     return provinces;
@@ -64,7 +64,7 @@ class ChinaLocation {
       const cityData = citiesObject[cityKey];
       cities.push({
         code: cityData.code,
-        name: cityData.name
+        name: cityData.name,
       });
     });
     return cities;
@@ -82,7 +82,7 @@ class ChinaLocation {
     districtKeys.forEach(districtKey => {
       districts.push({
         code: districtKey,
-        name: districtsObject[districtKey]
+        name: districtsObject[districtKey],
       });
     });
     return districts;
@@ -141,16 +141,16 @@ class ChinaLocation {
 
     this.currentCities = cities;
     this.activeProvince = provinceCode;
-    this.changeCity(city ? city.code : "", districtCode);
+    this.changeCity(city ? city.code : '', districtCode);
   }
 
   changeCity(cityCode: string, districtCode?: string): void {
     const districts = this.getDistricts(
       {
-        code: cityCode
+        code: cityCode,
       },
       {
-        code: this.activeProvince
+        code: this.activeProvince,
       }
     );
 
@@ -169,7 +169,7 @@ class ChinaLocation {
       }
     }
 
-    this.changeDistrict(district ? district.code : "");
+    this.changeDistrict(district ? district.code : '');
   }
 
   changeDistrict(districtCode: string): void {
@@ -187,16 +187,16 @@ class ChinaLocation {
     return {
       province: {
         code: originalProvince.code,
-        name: originalProvince.name
+        name: originalProvince.name,
       },
       city: {
         code: originalCity.code,
-        name: originalCity.name
+        name: originalCity.name,
       },
       district: {
         code: this.activeDistrict,
-        name: originalDistrict || ""
-      }
+        name: originalDistrict || '',
+      },
     };
   }
 
