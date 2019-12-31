@@ -40,6 +40,18 @@ describe('ChinaLocation', function() {
     expect(newLocation.district.name).toEqual('吴江区');
   });
 
+  it('should get current provinces/cities/districts', function() {
+    const location = new ChinaLocation(list);
+    //shanghai
+    location.changeLocation('310000', '310000', '310101');
+    const provinces = location.getCurrentProvinces();
+    const cities = location.getCurrentCities();
+    const districts = location.getCurrentDistricts();
+    expect(provinces.length).toEqual(34);
+    expect(cities.length).toEqual(1);
+    expect(districts.length).toEqual(16);
+  });
+
   it('should have no district', function() {
     const location = new ChinaLocation(list);
     location.changeLocation('440000', '441900');

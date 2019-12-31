@@ -26,9 +26,6 @@ class ChinaLocation {
   activeDistrict: string;
 
   constructor(locationData) {
-    if (!(this instanceof ChinaLocation)) {
-      return new ChinaLocation(locationData);
-    }
 
     this.locationData = locationData;
 
