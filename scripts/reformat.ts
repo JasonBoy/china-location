@@ -34,6 +34,7 @@ function getProvince() {
     return key.endsWith('0000');
   });
   // console.log('=======Province=======');
+  var city_count = 0;
   provinceKeys.forEach(pk => {
     // console.log(`${pk}:${list[pk]}`);
     result[pk] = {
@@ -41,10 +42,12 @@ function getProvince() {
       name: list[pk],
       cities: getCities(pk),
     };
+    city_count += Object.keys(result[pk].cities).length;
     // const tempCities = getCities(pk);
   });
   // console.log(result);
   // console.log(`=======Province END, total: ${provinceKeys.length}=======`);
+  // console.log(`=======Province END, total city: ${city_count}=======`);
 
   //=====
   // getCities('310000'); //shanghai
@@ -74,11 +77,29 @@ function getCities(provinceCode) {
         ) {
           return true;
         }
+      } else {
+        if (index > 0) {
+          var preCityIndex = index - 1;
+          while (preCityIndex >= 0) {
+            const preCityKey = allKeys[preCityIndex];
+            if (preCityKey.endsWith('00')) {
+              if (preCityKey.substring(2, 4) != pk.substring(2, 4) &&
+              preCityKey.substring(2, 4) != '00') {
+                // console.log(`补充 : ${pk}:${list[pk]}`);
+                return true;
+              }
+              break;
+            }
+            preCityIndex--;
+          }
+        }
       }
     }
+    // console.log(`false : ${pk}:${list[pk]}`);
     return false;
   });
-  // console.log(`=======Cities for: ${provinceCode}=======`);
+  // console.log(`=======Cities for: ${provinceCode}: ${list[provinceCode]}=======`);
+  var district_count = 0;
   cities.forEach(ck => {
     // console.log(`${ck}:${list[ck]}`);
     result[ck] = {
@@ -86,8 +107,10 @@ function getCities(provinceCode) {
       name: list[ck],
       districts: getDistricts(ck),
     };
+    district_count += Object.keys(result[ck].districts).length;
   });
   // console.log(result);
+  // console.log(`=======Cities END, district total: ${district_count}=======`);
   // console.log(`=======Cities END, total: ${cities.length}=======`);
 
   // getDistricts(cities[0]);
@@ -99,18 +122,23 @@ function getDistricts(cityCode) {
   const justProvince = cityCode.substring(0, 2);
   const justCity = cityCode.substring(0, 4);
   const districts = allKeys.filter((pk, index) => {
-    if (pk.startsWith(justCity)) {
-      if (!pk.endsWith('00')) {
-        return true;
+
+    if (cityCode.endsWith('00')) {
+      if (pk.startsWith(justCity)) {
+        if (!pk.endsWith('00')) {
+          return true;
+        }
       }
-    }
-    //特别行政区, 直辖市
-    if (justCity.endsWith('00')) {
-      if (pk.startsWith(justProvince) && !pk.endsWith('0000')) {
-        return true;
+      //特别行政区, 直辖市
+      if (justCity.endsWith('00')) {
+        if (pk.startsWith(justProvince) && !pk.endsWith('0000')) {
+          return true;
+        }
       }
+      return false;
+    } else {
+      return (pk === cityCode);
     }
-    return false;
   });
   // console.log(`=======Districts for: ${cityCode}=======`);
   districts.forEach(ck => {
